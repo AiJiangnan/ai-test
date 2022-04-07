@@ -1,11 +1,10 @@
-import express from 'express';
 import cookieParser from 'cookie-parser';
-var logger = require('morgan');
-
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import express from 'express';
 import environmentsRouter from './routes/environments';
 import ErrorRsp, { HttpStatus } from './routes/error_resp';
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
+var logger = require('morgan');
 
 var app = express();
 
@@ -14,9 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/', indexRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/environments', environmentsRouter);
+app.use('/aitest/api/', indexRouter);
+app.use('/aitest/api/users', usersRouter);
+app.use('/aitest/api/environments', environmentsRouter);
 
 // error handler
 app.use((err: any, req: any, res: any, next: (v: any) => void) => {
