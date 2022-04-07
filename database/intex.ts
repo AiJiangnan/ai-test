@@ -7,6 +7,10 @@ var db: Db;
 client.connect().then(() => {
     console.log('Connected successfully to mongodb server');
     db = client.db('aitest');
+    // 初始化全局变量
+    const collection: Collection = db.collection<any>('environment')
+    const globalVariable = { global: true, name: '全局变量' }
+    collection.findOneAndUpdate(globalVariable, { $set: globalVariable }, { upsert: true })
 });
 
 class Mongodb {
